@@ -14,13 +14,14 @@ namespace CaravanJourneySpot
         static CSHarmonyPatches()
         {
             var harmony = new Harmony("CaravanSpot");
-            var rwmethod = AccessTools.Method(typeof(Dialog_FormCaravan), "TryFindExitSpot", new[] { typeof(List<Pawn>), typeof(bool), typeof(IntVec3).MakeByRefType() });
-            var patchmethod = new HarmonyMethod(typeof(CSHarmonyPatches).GetMethod("TryFindExitSpotPatch"));
+            MethodInfo rwmethod = AccessTools.Method(typeof(Dialog_FormCaravan), "TryFindExitSpot", new[] { typeof(List<Pawn>), typeof(bool), typeof(IntVec3).MakeByRefType() });
+            MethodInfo ptmethod = typeof(CSHarmonyPatches).GetMethod("TryFindExitSpotPatch");
 
-            if (rwmethod != null && patchmethod != null)
+            if(rwmethod != null && ptmethod != null)
             {
-                harmony.Patch(rwmethod, null, patchmethod);
-                Log.Message("CaravanSpot: Patched TryFindExitSpot()");
+                var hrmethod = new HarmonyMethod(ptmethod);
+                harmony.Patch(rwmethod, null, hrmethod);
+                Log.Message("CaravanJourneySpot: Patched TryFindExitSpot()");
             }
             else
             {

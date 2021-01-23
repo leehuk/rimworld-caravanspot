@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+	<CaravanJourneySpot>Caravan Journey Spot</CaravanJourneySpot>
+	<CaravanJourneySpot.AlreadyOnMap>Only one caravan journey spot allowed per map, old caravan spot removed</CaravanJourneySpot.AlreadyOnMap>
+</LanguageData>

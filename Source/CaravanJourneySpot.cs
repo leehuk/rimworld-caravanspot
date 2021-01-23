@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using RimWorld;
+using RimWorld.Planet;
 using Verse;
 using Verse.AI;
 
@@ -25,7 +26,21 @@ namespace CaravanJourneySpot
             }
             else
             {
-                Log.Error("CaravanSpot: Unable to patch TryFindExitSpot()");
+                Log.Error("CaravanJourneySpot: Unable to patch TryFindExitSpot()");
+            }
+
+            rwmethod = AccessTools.Method(typeof(CaravanEnterMapUtility), "GetEnterCell", new[] { typeof(Caravan), typeof(Map), typeof(CaravanEnterMode), typeof(Predicate<IntVec3>) });
+            ptmethod = typeof(CSHarmonyPatches).GetMethod("GetEnterCellPatch");
+
+            if (rwmethod != null && ptmethod != null)
+            {
+                var hrmethod = new HarmonyMethod(ptmethod);
+                harmony.Patch(rwmethod, hrmethod, null);
+                Log.Message("CaravanJourneySpot: Patched GetEnterCell()");
+            }
+            else
+            {
+                Log.Error("CaravanJourneySpot: Unable to patch GetEnterCell()");
             }
         }
 
@@ -49,6 +64,25 @@ namespace CaravanJourneySpot
                     }
                 }
             }
+        }
+
+        public static bool GetEnterCellPatch(ref Caravan caravan, ref Map map, ref CaravanEnterMode enterMode, ref Predicate<IntVec3> extraCellValidator, ref IntVec3 __result)
+        {
+            if (enterMode != CaravanEnterMode.Edge)
+            {
+                return true;
+            }
+
+            foreach (Building building in map.listerBuildings.allBuildingsColonist)
+            {
+                if (building.def.defName.Equals("CaravanJourneySpot"))
+                {
+                    __result = building.Position;
+                    return false;
+                }
+            }
+
+            return true;
         }
 
     }

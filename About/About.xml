@@ -5,6 +5,7 @@
     <url></url>
     <supportedVersions>
         <li>1.2</li>
+		<li>1.3</li>
     </supportedVersions>
 <description>
 Provides a Caravan Journey Spot which controls where pawns leave the map when forming caravans and where they enter the map when returning

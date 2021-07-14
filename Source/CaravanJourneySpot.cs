@@ -54,7 +54,7 @@ namespace CaravanJourneySpot
                     {
                         for(int i = 0; i < pawns.Count; i++)
                         {
-                            if (pawns[i].IsColonist && !pawns[i].Downed && !pawns[i].CanReach(building.Position, PathEndMode.Touch, Danger.Deadly, false, TraverseMode.ByPawn))
+                            if (pawns[i].IsColonist && !pawns[i].Downed && !pawns[i].CanReach(building.Position, PathEndMode.Touch, Danger.Deadly, false, false, TraverseMode.ByPawn))
                             {
                                 return;
                             }

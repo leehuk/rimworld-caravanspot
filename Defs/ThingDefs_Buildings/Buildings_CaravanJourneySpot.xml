@@ -5,7 +5,7 @@
     <thingClass>CaravanJourneySpot.CaravanJourneySpot</thingClass>
     <description>Designates a spot which controls where caravans leave the map</description>
     <graphicData>
-      <texPath>Things/Building/Misc/CaravanPackingSpot</texPath>
+      <texPath>Misc/CaravanJourneySpot</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <drawSize>(1,1)</drawSize>
     </graphicData>

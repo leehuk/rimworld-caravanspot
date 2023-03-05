@@ -9,7 +9,7 @@
         <li>1.4</li>
     </supportedVersions>
 <description>
-Provides a Caravan Journey Spot which controls where pawns leave the map when forming caravans and where they enter the map when returning
+Provides a Caravan Journey Spot which controls where pawns forming caravans leave the map and where they enter the map when returning
 </description>
 <packageId>caravanjourneyspot.leeh</packageId>
 </ModMetaData>
